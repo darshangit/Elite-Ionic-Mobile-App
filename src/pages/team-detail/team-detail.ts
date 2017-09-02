@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 
 @Component({
@@ -8,8 +8,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TeamDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  team: any;
+  constructor(private navCtrl: NavController, private navParams: NavParams) {
+    this.team = this.navParams.data;
+    console.log('team',this.team)
   }
 
+  // goHome(){
+  //   console.log('**parent',this.navCtrl.parent)
+  //   this.navCtrl.parent.parent.popToRoot();
+  // }
 
 }
