@@ -14,6 +14,7 @@ export class TeamDetailPage {
 
   games: any[];
   team: any;
+  teamStanding: any;
 
   private tournamentData: any;
 
@@ -46,8 +47,11 @@ export class TeamDetailPage {
         };
       })
       .value();
-
-    console.log('games', this.games)
+      console.log('this.tournamentData.standings', this.tournamentData.standings)
+      
+    this.teamStanding = _.find(this.tournamentData.standings, { 'teamId': this.team.id });
+    console.log('this.teamStanding', this.tournamentData.standings)
+    
   }
 
   getScoreDisplay(isTeam1: any, team1Score: any, team2Score: any): any {
@@ -62,9 +66,9 @@ export class TeamDetailPage {
     }
   }
 
-  gameClicked(event,game){
+  gameClicked(event, game) {
     let sourceGame = this.tournamentData.games.find(g => g.id === game.gameId);
-    console.log('sourceGame',sourceGame);
+    console.log('sourceGame', sourceGame);
     this.navCtrl.parent.parent.push(GamePage, sourceGame);
   }
 

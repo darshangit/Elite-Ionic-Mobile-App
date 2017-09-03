@@ -9,9 +9,35 @@
 
 <ion-content padding>
   <!-- <button ion-button (click)="goHome()">Home</button> -->
+  <ion-card>
+    <ion-card-content>
+      <ion-row>
+        <ion-col *ngIf="teamStanding !== undefined">
+          <h2>Recod: {{teamStanding.wins}}-{{teamStanding.losses}}</h2>
+          <p>Coach: {{team.coach}}</p>
+        </ion-col>
+        <ion-col>
+          
+
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
   <ion-list>
     <ion-item *ngFor="let game of games" (click)="gameClicked($event,game)">
-      {{game.opponent}}
+      <ion-row>
+        <ion-col class="spaceNormal">
+          <p>{{game.time | date:'M/d/yy'}}</p>
+          <p>{{game.time | date:'shortTime'}}</p>
+        </ion-col>
+        <ion-col col-6 class="spaceNormal">
+          <p>{{game.homeAway}} {{game.opponent}}</p>
+          <p>{{game.location}}</p>
+        </ion-col>
+        <ion-col class="spaceNormal">
+          <h4>{{game.scoreDisplay}}</h4>
+        </ion-col>
+      </ion-row>
     </ion-item>
   </ion-list>
 </ion-content>

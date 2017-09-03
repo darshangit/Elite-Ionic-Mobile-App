@@ -4,6 +4,7 @@ import { TournamentsPage, TeamHomePage } from "../page";
 import { EliteApi } from "../../shared/shared";
 
 @Component({
+    selector: 'my-teams-page',
     templateUrl: './my-teams.page.html'
 })
 export class MyTeamsPage{
