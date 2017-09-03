@@ -11,18 +11,17 @@ export class GamePage {
   game: any
 
   constructor(private navCtrl: NavController, private navParams: NavParams,private eliteApi: EliteApi) {
-    console.log('this.game',this.game)
+    this.game = this.navParams.data;
     
   }
 
   ionViewDidLoad(){
-    this.game = this.navParams.data;
-    console.log('this.game',this.game)
+    console.log('this.game', this.navParams.data)
   }
 
   teamTapped(teamId){
     let tournamentData = this.eliteApi.getCurrentTournament();
-    let team = tournamentData.find(t => t.id === teamId)
+    let team = tournamentData.teams.find(t => t.id === teamId)
     this.navCtrl.push(TeamHomePage,team)
   }
 
