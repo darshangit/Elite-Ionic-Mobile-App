@@ -12,14 +12,24 @@
   <ion-card>
     <ion-card-content>
       <ion-row>
-        <ion-col *ngIf="teamStanding !== undefined">
+        <ion-col *ngIf="teamStanding !== undefined" width-50>
           <h2>Recod: {{teamStanding.wins}}-{{teamStanding.losses}}</h2>
           <p>Coach: {{team.coach}}</p>
         </ion-col>
-        <ion-col>
-          
-
+        <ion-col  width-50 text-right>
+          <button ion-button outline (click)="toggleFollow()" *ngIf="!isFollowing">
+            <ion-icon name="star"></ion-icon>
+            Add Favourite
+          </button>
+          <button ion-button (click)="toggleFollow()" *ngIf="isFollowing">
+            <ion-icon name="star"></ion-icon>
+          </button>
         </ion-col>
+        <ion-item>
+          <ion-label>Data Filter:</ion-label>
+          <ion-toggle [(ngModel)]="useDateFilter" (ionChange)="dateChanged()"></ion-toggle>
+          <ion-datetime displayFormat="M/D/YYYYY" pickerFormat="M/D/YYYY" [(ngModel)]="dateFilter" (ionChange)="dateChanged()"[(disabled)]="!useDateFilter"></ion-datetime>
+        </ion-item>
       </ion-row>
     </ion-card-content>
   </ion-card>
@@ -36,6 +46,7 @@
         </ion-col>
         <ion-col class="spaceNormal">
           <h4>{{game.scoreDisplay}}</h4>
+          <ion-badge [color]="getScoreDisplaybadgeClass(game)">{{getScoreWorL(game)}}</ion-badge>
         </ion-col>
       </ion-row>
     </ion-item>
