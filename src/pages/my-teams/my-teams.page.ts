@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { LoadingController,NavController } from "ionic-angular";
 import { TournamentsPage, TeamHomePage } from "../page";
-import { EliteApi } from "../../shared/shared";
+import { EliteApi,UserSettings } from "../../shared/shared";
 
 @Component({
     selector: 'my-teams-page',
@@ -9,15 +9,9 @@ import { EliteApi } from "../../shared/shared";
 })
 export class MyTeamsPage{
 
-    favourites = [
-        {
-            team: {id: 6182,name: 'HC Elite 7th',coach: 'Dash'},
-            tournamentId:'89e13aa2-ba6d-4f55-9cc2-61eba6172c63',
-            tournamentName: 'March Madness Tournament'
-        }
-
-    ]
-    constructor(private nav: NavController,private loadingController: LoadingController,private eliteApi: EliteApi){
+    favourites = []
+    constructor(private nav: NavController,private loadingController: LoadingController,
+        private eliteApi: EliteApi,private userSettings: UserSettings){
 
     }
 
@@ -35,5 +29,12 @@ export class MyTeamsPage{
             this.eliteApi.getTournamentData(favourite.tournamentId)
             .subscribe(t => this.nav.push(TeamHomePage,favourite.team));
         })
+    }
+
+    ionViewDidEnter(){
+        console.log('didEnter')
+        this.favourites = this.userSettings.getAllFavourites();
+        console.log('didEnter: this.favourites',this.favourites)
+        
     }
 }

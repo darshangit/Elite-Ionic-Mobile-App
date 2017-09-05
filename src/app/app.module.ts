@@ -7,8 +7,8 @@ import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { MyTeamsPage,TournamentsPage,TeamDetailPage,TeamsPage,GamePage,TeamHomePage,StandingsPage } from "../pages/page";
-import { EliteApi } from "../shared/shared";
-
+import { EliteApi,UserSettings } from "../shared/shared";
+import { IonicStorageModule } from '@ionic/storage';
 @NgModule({
   declarations: [
     MyApp,
@@ -24,6 +24,7 @@ import { EliteApi } from "../shared/shared";
     BrowserModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,7 +41,8 @@ import { EliteApi } from "../shared/shared";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    EliteApi
+    EliteApi,
+    UserSettings
   ]
 })
 export class AppModule {}
